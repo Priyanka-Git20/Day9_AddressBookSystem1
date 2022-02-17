@@ -1,8 +1,5 @@
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.ListIterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookSystem {
     public static void main(String[] args) {
@@ -15,6 +12,7 @@ public class AddressBookSystem {
             System.out.println("1.INSERT");
             System.out.println("2.DISPLAY");
             System.out.println("3.UPDATE ");
+            System.out.println("4.Delete");
             System.out.println("Enter your choice");
             choice = sc.nextInt();
 
@@ -40,7 +38,14 @@ public class AddressBookSystem {
                     collection.add(contactDetails);
                     break;
                 case 2:
-                    System.out.println(collection);
+                    System.out.println("-----------------------------");
+                    Iterator<ContactDetails> i = collection.iterator();
+                    while (i.hasNext()) {
+                        contactDetails = i.next();
+                        System.out.println(contactDetails);
+                    }
+                    System.out.println("------------------------------------");
+
                     break;
                 case 3:
                     boolean found = false;
@@ -79,6 +84,27 @@ public class AddressBookSystem {
                         System.out.println("Record not found");
                     } else {
                         System.out.println("Record is updated successfully");
+                    }
+                    System.out.println("------------------------------------");
+                    break;
+                case 4:
+                    found = false;
+                    System.out.println("Enter first name of the person for delete ");
+                    firstName1 = sc1.nextLine();
+                    System.out.println("------------------------------------");
+                    i= collection.iterator();
+                    while (i.hasNext()) {
+                        contactDetails = i.next();
+                        if (contactDetails.getFirstName().equals(firstName1)) {
+                            i.remove();
+                            found = true;
+                        }
+                    }
+                    System.out.println("------------------------------------");
+                    if (!found) {
+                        System.out.println("Record not found");
+                    } else {
+                        System.out.println("Record is deleted successfully");
                     }
                     System.out.println("------------------------------------");
                     break;
