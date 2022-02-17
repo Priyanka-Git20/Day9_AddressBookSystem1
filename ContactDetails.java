@@ -1,12 +1,12 @@
 public class ContactDetails {
-        private String firstName;
-        private String lastName;
-        private String address;
-        private String city;
-        private String state;
-        private int zip;
-        private int phoneNumber;
-        private String emailId;
+         String firstName;
+         String lastName;
+         String address;
+         String city;
+         String state;
+         int zip;
+         int phoneNumber;
+         String emailId;
 
         ContactDetails(String firstName, String lastName, String address, String city, String state, int zip, int phoneNumber, String emailId) {
             this.firstName = firstName;

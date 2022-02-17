@@ -1,6 +1,7 @@
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class AddressBookSystem {
@@ -13,13 +14,14 @@ public class AddressBookSystem {
         do {
             System.out.println("1.INSERT");
             System.out.println("2.DISPLAY");
+            System.out.println("3.UPDATE ");
             System.out.println("Enter your choice");
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter First Name: ");
-                    String firstName = sc1.nextLine();
+                    String firstName1 = sc1.nextLine();
                     System.out.print("Enter last Name: ");
                     String lastName = sc1.nextLine();
                     System.out.print("Enter your address: ");
@@ -34,13 +36,56 @@ public class AddressBookSystem {
                     int phoneNumber = sc.nextInt();
                     System.out.print("Enter your EMail ID: ");
                     String emailId = sc1.nextLine();
-                    ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, zip, phoneNumber, emailId);
+                    ContactDetails contactDetails = new ContactDetails(firstName1, lastName, address, city, state, zip, phoneNumber, emailId);
                     collection.add(contactDetails);
                     break;
                 case 2:
                     System.out.println(collection);
                     break;
+                case 3:
+                    boolean found = false;
+                    System.out.println("Enter first name of the person for update ");
+                    firstName1 = sc1.nextLine();
+                    System.out.println("------------------------------------");
+
+                    ListIterator<ContactDetails> listIterator = collection.listIterator();
+
+                    while (listIterator.hasNext()) {
+                        contactDetails = listIterator.next();
+
+                        if (contactDetails.getFirstName().equals(firstName1)) {
+
+                            System.out.print("Enter new last Name: ");
+                            lastName = sc1.nextLine();
+                            System.out.print("Enter your new address: ");
+                            address = sc1.nextLine();
+                            System.out.print("Enter your new city: ");
+                            city = sc1.nextLine();
+                            System.out.print("Enter your state: ");
+                            state = sc1.nextLine();
+                            System.out.print("Enter zip code : ");
+                            zip = sc.nextInt();
+                            System.out.print("Enter phone number: ");
+                            phoneNumber = sc.nextInt();
+                            System.out.print("Enter your EMail ID: ");
+                            emailId = sc1.nextLine();
+                            listIterator.set(new ContactDetails(firstName1, lastName, address, city, state, zip, phoneNumber, emailId));
+                            found = true;
+                        }
+                    }
+                    System.out.println("------------------------------------");
+
+                    if (!found) {
+                        System.out.println("Record not found");
+                    } else {
+                        System.out.println("Record is updated successfully");
+                    }
+                    System.out.println("------------------------------------");
+                    break;
+                default:
+                    System.out.println("default");
             }
-        }while (choice!= 0);
+        } while (choice != 0);
     }
 }
+
